@@ -1,0 +1,321 @@
+@charset "utf-8";
+
+/*---------------------------------------------------------------------------
+➀パソコン VIEW設定
+---------------------------------------------------------------------------*/
+/* ページ最上部のパララックス背景画像 */
+.header-banner {
+    background-image: url('../images/proprety/1header-parallax.jpg');
+}
+
+/* ============================================================================
+   1. 基本レイアウト - メインコンテナ
+   ========================================================================= */
+   .list-container {
+    /* Flexboxを使用して子要素を配置 */
+    display: flex;
+    flex-wrap: wrap; /* 幅が足りない場合は折り返し */
+    gap: 32px; /* アイテム間の間隔 */
+    
+    /* コンテナの最大幅と中央配置 */
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 32px;
+    
+    /* 背景色 */
+    background-color: var(--bg-light);
+}
+
+/* ============================================================================
+   2. 物件カード全体のスタイル
+   ========================================================================= */
+.list {
+    /* カードの基本スタイル */
+    background: var(--text-white);
+    border-radius: 20px; /* 角丸 */
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    
+    /* 影効果 */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    
+    /* ホバーアニメーションの設定 */
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    
+    /* カードの幅設定（3列レイアウト） */
+    width: calc((100% - 64px) / 3);
+}
+
+/* カードのホバー時の効果 */
+.list:hover {
+    transform: translateY(-8px) scale(1.01); /* 上に浮き上がる＆少し大きく */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08); /* 影を強調 */
+}
+
+/* カード内のリンク */
+.list a {
+    text-decoration: none;
+    color: var(--text-dark);
+}
+
+/* カードのコンテンツ領域 */
+.list-content {
+    position: relative;
+    height: 100%;
+}
+
+/* ============================================================================
+   3. 物件画像のスタイル
+   ========================================================================= */
+.property-image {
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    aspect-ratio: 16/9; /* 画像の縦横比を固定 */
+}
+
+/* 画像自体のスタイル */
+.property-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 画像のアスペクト比を保持しつつ領域を埋める */
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 画像上のグラデーションオーバーレイ */
+.property-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.02) 70%,
+        rgba(0, 0, 0, 0.1) 100%
+    );
+    transition: opacity 0.3s ease;
+}
+
+/* ホバー時の画像拡大効果 */
+.list:hover .property-image img {
+    transform: scale(1.05);
+}
+
+/* ============================================================================
+   4. 物件情報エリアのスタイル
+   ========================================================================= */
+.property-info {
+    padding: 24px;
+}
+
+/* 物件名（見出し） */
+.property-info h4 {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--primary-dark);
+}
+
+/* ============================================================================
+   5. ステータスアイコンのスタイル
+   ========================================================================= */
+.status-icon {
+    /* 位置固定 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-60px, 20px) rotate(-30deg);
+    display: inline-block;
+    width: 200px;
+    text-align: center;
+    
+    /* サイズと形状 */
+    padding: 8px 16px;
+    border-radius: 8px;
+    
+    /* フォント設定 */
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    
+    /* 背景のブラー効果 */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* 募集中ステータス */
+.status-icon.available {
+    background: var(--secondary-main);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-white);
+}
+
+/* 入居中ステータス */
+.status-icon.occupied {
+    background: var(--accent-main);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-white);
+}
+
+
+/* ============================================================================
+   6. タグのスタイル
+   ========================================================================= */
+.tags-container {
+    margin-top: 16px;
+}
+
+/* 共通のタグスタイル */
+.tag {
+    display: inline-flex;
+    align-items: center;
+    font-size: 13px;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+/* プライマリータグ（おすすめ設備） */
+.tag-primary {
+    background: rgba(66, 153, 225, 0.1);
+    color: var(--accent-dark);
+    border: 1px solid rgba(66, 153, 225, 0.2);
+}
+
+/* セカンダリータグ（アピールポイント） */
+.tag-secondary {
+    background: rgba(56, 161, 105, 0.1);
+    color: var(--secondary-dark);
+    border: 1px solid rgba(56, 161, 105, 0.2);
+}
+
+/* ============================================================================
+   7. 設備アイコンのスタイル
+   ========================================================================= */
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 0;
+}
+
+/* 各設備アイコンのスタイル */
+.feature-item {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 14px;
+    background: var(--bg-subtle);
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--text-main);
+    transition: all 0.3s ease;
+}
+
+/* 設備アイコンのホバー効果 */
+.feature-item:hover {
+    background: var(--bg-muted);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Font Awesomeアイコンの設定 */
+.feature-item::before {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    margin-right: 8px;
+    font-size: 14px;
+}
+
+/* 各設備アイコンの個別設定 */
+.option-internet::before {
+    content: '\f796';
+    /* wifi */
+    color: var(--accent-main);
+}
+
+.option-aircon::before {
+    content: '\f2dc';
+    /* snowflake */
+    color: var(--accent-main);
+}
+
+.option-garden::before {
+    content: '\f06c';
+    /* leaf */
+    color: var(--secondary-main);
+}
+
+.option-storage::before {
+    content: '\f494';
+    /* warehouse */
+    color: var(--primary-main);
+}
+
+.option-parking::before {
+    content: '\f1b9';
+    /* car */
+    color: var(--primary-main);
+}
+
+.option-bathroom-dryer::before {
+    content: '\f72e';
+    /* wind */
+    color: var(--accent-main);
+}
+
+
+
+/* ============================================================================
+   8. アピールポイントのスタイル
+   ========================================================================= */
+.appeal-point {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-main);
+    margin: 8px 0;
+    padding-left: 4px;
+}
+
+/* ============================================================================
+   9. レスポンシブ対応
+   ========================================================================= */
+/* タブレット向け (960px以下) */
+@media screen and (max-width: 960px) {
+    .list {
+        width: calc((100% - 32px) / 2); /* 2列レイアウト */
+    }
+    
+    .property-info {
+        padding: 20px;
+    }
+
+    .property-info h4 {
+        font-size: 18px;
+    }
+}
+
+/* スマートフォン向け (659px以下) */
+@media screen and (max-width: 659px) {
+    .list-container {
+        padding: 16px;
+        gap: 24px;
+    }
+
+    .list {
+        width: 100%; /* 1列レイアウト */
+    }
+    
+    .property-info h4 {
+        font-size: 16px;
+    }
+
+    .features {
+        grid-template-columns: repeat(2, 1fr); /* 設備アイコンを2列に */
+    }
+}

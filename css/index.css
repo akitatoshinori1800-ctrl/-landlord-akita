@@ -1,0 +1,28 @@
+@charset "utf-8";
+
+/*---------------------------------------------------------------------------
+➀パソコン VIEW設定
+---------------------------------------------------------------------------*/
+/* ページ最上部のパララックス背景画像 */
+.header-banner {
+    background-image: url('../images/index/1header-parallax.jpg');
+}
+
+/* はじめにセクション */
+#introduction {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.6;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 200px;
+}
+
+#introduction p {
+    margin: 0;
+    text-align: center;
+}
+

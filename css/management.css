@@ -1,0 +1,346 @@
+@charset "utf-8";
+
+
+/*---------------------------------------------------------------------------
+➀パソコン VIEW設定
+---------------------------------------------------------------------------*/
+/* ページ最上部のパララックス背景画像 */
+.header-banner {
+    background-image: url('../images/management/1header-parallax.jpg');
+}
+
+/* ===== リストコンテナ ===== */
+.list-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    width: 100%;
+    padding: 30px;
+    background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-subtle) 100%);
+    border-radius: 20px;
+    box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.08),
+        inset 0 2px 4px rgba(255, 255, 255, 0.5);
+}
+
+/* ===== 各リストアイテム ===== */
+.list {
+    flex: 0 0 calc(25% - 19px);
+    position: relative;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(247, 250, 252, 0.95) 100%
+    );
+    border-radius: 16px;
+    padding: 15px;
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.08),
+        0 1px 3px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8),
+        inset 0 0 20px rgba(255, 255, 255, 0.4);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(4px);
+}
+
+.list::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.2) 0%,
+        transparent 70%
+    );
+    transform: rotate(30deg);
+    pointer-events: none;
+}
+
+.list::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(
+        90deg,
+        var(--primary-light),
+        var(--accent-light),
+        var(--secondary-light)
+    );
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+/* ホバー時のアニメーション */
+.list:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+        0 15px 30px rgba(0, 0, 0, 0.15),
+        0 8px 12px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6),
+        inset 0 0 20px rgba(255, 255, 255, 0.8);
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(247, 250, 252, 0.98) 100%
+    );
+}
+
+.list:hover::after {
+    height: 6px;
+    opacity: 1;
+    background: linear-gradient(
+        90deg,
+        var(--primary-main),
+        var(--accent-main),
+        var(--secondary-main)
+    );
+}
+
+/* ===== 画像関連 ===== */
+.list-image {
+    width: 100%;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.list-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.2) 0%,
+        transparent 60%
+    );
+    z-index: 1;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.list-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(0, 0, 0, 0.05) 100%
+    );
+    transition: all 0.3s ease;
+}
+
+.list img {
+    width: 100%;
+    height: auto;
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    filter: brightness(1.02);
+}
+
+.list:hover img {
+    transform: scale(1.08);
+    filter: brightness(1.05) contrast(1.02);
+}
+
+.list:hover .list-image {
+    box-shadow: 
+        0 6px 15px rgba(0, 0, 0, 0.15),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+/* ===== テキスト装飾 ===== */
+.list h4 {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.5;
+    margin: 12px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    position: relative;
+    z-index: 1;
+}
+
+.list h4 .date,
+.list h4 .location,
+.list h4 .description {
+    transition: all 0.3s ease;
+}
+
+/* 日付のスタイル */
+.list h4 .date {
+    color: var(--primary-main);
+    transform: translateX(2px);
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.list h4 .date i {
+    font-size: 1rem;
+    color: var(--primary-dark);
+}
+
+.list h4 .date::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 20px; /* アイコンの幅を考慮して調整 */
+    width: 60px;
+    height: 2px;
+    background: var(--primary-light);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: left;
+}
+
+.list:hover h4 .date::after {
+    transform: scaleX(1);
+}
+
+/* 場所のスタイル */
+.list h4 .location {
+    color: var(--accent-main);
+    transform: translateX(2px);
+    font-weight: 500;
+    font-size: 1rem;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.list h4 .location i {
+    font-size: 1rem;
+    color: var(--accent-dark);
+}
+
+/* 内容のスタイル */
+.list h4 .description {
+    color: var(--secondary-main);
+    transform: translateX(2px);
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.list h4 .description i {
+    font-size: 1rem;
+    color: var(--secondary-dark);
+}
+
+/* ===== オプションリボン共通設定 ===== */
+.option1, .option2, .option3, .option4, .option5 {
+    font-size: 0.75rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    display: inline-block;
+    width: 200px;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-60px, 20px) rotate(-30deg);
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 3px 8px rgba(0, 0, 0, 0.15),
+        0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 6px 0;
+    letter-spacing: 1px;
+    backdrop-filter: blur(4px);
+}
+
+.list:hover .option1,
+.list:hover .option2,
+.list:hover .option3,
+.list:hover .option4,
+.list:hover .option5 {
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.2),
+        0 2px 4px rgba(0, 0, 0, 0.1);
+    transform: translate(-60px, 20px) rotate(-30deg) scale(1.05);
+}
+
+
+/* 各オプションの個別スタイル */
+.option3 {  /* 剪定・清掃 */
+    background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent-main) 100%);
+    color: var(--primary-dark);
+}
+
+.option4 {  /* 点検・修理 */
+    background: linear-gradient(135deg, var(--secondary-light) 0%, var(--secondary-main) 100%);
+    color: var(--text-dark);
+}
+
+.option5 {  /* 巡回・掲示 */
+    background: linear-gradient(135deg, var(--primary-main) 0%, var(--primary-dark) 100%);
+    color: var(--bg-light);
+}
+
+/* ===== レスポンシブ対応 ===== */
+/* タブレット用 (661px～960px) */
+@media screen and (min-width: 661px) and (max-width: 960px) {
+    .list {
+        flex: 0 0 calc(33.333% - 17px);  /* 3カラムレイアウト */
+    }
+    
+    .list-container {
+        gap: 20px;
+        padding: 20px;
+    }
+}
+
+/* スマートフォン用 (～660px) */
+@media screen and (max-width: 660px) {
+    .list {
+        flex: 0 0 calc(50% - 10px);
+    }
+    
+    .list-container {
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .list h4 .date {
+        font-size: 0.85rem;
+    }
+    
+    .list h4 .location {
+        font-size: 0.9rem;
+    }
+    
+    .list h4 .description {
+        font-size: 0.95rem;
+    }
+    
+    .option1, .option2, .option3, .option4, .option5 {
+        font-size: 0.7rem;
+        width: 160px;
+        transform: translate(-50px, 15px) rotate(-30deg);
+    }
+}

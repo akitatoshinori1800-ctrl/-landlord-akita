@@ -1,0 +1,81 @@
+                    <!--屋内エリア
+--------------------------------------------------------------------->
+                    <!-- 360度パノラマ画像を表示させるために必要なコード -->
+                    <div id="imageModal" class="modal">
+                        <div class="modal-content">
+                            <button class="modal-close">&times;</button>
+                            <h3 class="modal-title"></h3>
+                            <img class="modal-image" src="" alt="" style="display: none;">
+                            <div id="panoramaContainer" style="display: none;"></div>
+                        </div>
+                    </div>
+
+                    <h2>屋内</h2>
+                    <!-- 間取り図エリアを囲むコンテナ -->
+                    <div class="floor-plans-container">
+                        <!-- 1階間取り図 -->
+                        <section class="floor-section" id="first-floor">
+                            <h4 class="floor-title">1階</h4>
+                            <div class="floor-plan" data-original-width="1072">
+                                <img src="images/prime2/10map1F.jpg" alt="1階間取り図" id="floor1-img">
+
+                                <!-- 1階のクリッカブルエリア -->
+                                <a href="images/prime2/11toilet.jpg" class="highlight-area" data-original-left="600"
+                                    data-original-top="100" data-original-width="170" data-original-height="150"
+                                    data-title="トイレ"></a>
+                                <div class="area-label" data-original-left="600" data-original-top="100">トイレ</div>
+
+                                <!-- 1F 360パノラマ画像エリア -->
+                                <a href="#pannellum=images/prime2/pannellum/entrance.jpg" class="highlight-area"
+                                    data-original-left="800" data-original-top="250" data-original-width="250"
+                                    data-original-height="100" data-title="玄関"></a>
+                                <div class="area-label" data-original-left="800" data-original-top="250">玄関</div>
+
+                                <a href="#pannellum=images/prime2/pannellum/washroom.jpg" class="highlight-area"
+                                    data-original-left="120" data-original-top="280" data-original-width="250"
+                                    data-original-height="200" data-title="洗面所"></a>
+                                <div class="area-label" data-original-left="120" data-original-top="280">洗面所</div>
+
+                                <a href="#pannellum=images/prime2/pannellum/kitchen.jpg" class="highlight-area"
+                                    data-original-left="150" data-original-top="550" data-original-width="300"
+                                    data-original-height="300" data-title="台所"></a>
+                                <div class="area-label" data-original-left="150" data-original-top="550">台所</div>
+
+                                <a href="#pannellum=images/prime2/pannellum/living.jpg" class="highlight-area"
+                                    data-original-left="550" data-original-top="450" data-original-width="400"
+                                    data-original-height="400" data-title="リビング"></a>
+                                <div class="area-label" data-original-left="550" data-original-top="450">リビング</div>
+
+                            </div>
+                        </section> <!-- "floor-section" id="first-floor" -->
+
+                        <!-- 2階間取り図 -->
+                        <section class="floor-section" id="second-floor">
+                            <h4 class="floor-title">2階</h4>
+                            <div class="floor-plan" data-original-width="1028">
+                                <img src="images/prime2/20map2F.jpg" alt="2階間取り図" id="floor2-img">
+
+                                <!-- 2階のクリッカブルエリア -->
+                                <a href="images/prime2/21closet.jpg" class="highlight-area" data-original-left="500"
+                                    data-original-top="650" data-original-width="100" data-original-height="200"
+                                    data-title="クローゼット"></a>
+                                <div class="area-label" data-original-left="500" data-original-top="650">CL</div>
+
+                                <!-- 2F 360パノラマ画像エリア -->
+                                <a href="#pannellum=images/prime2/pannellum/room1.jpg" class="highlight-area"
+                                    data-original-left="650" data-original-top="150" data-original-width="300"
+                                    data-original-height="300" data-title="洋室4.5帖"></a>
+                                <div class="area-label" data-original-left="650" data-original-top="150">洋室4.5帖</div>
+
+                                <a href="#pannellum=images/prime2/pannellum/room2.jpg" class="highlight-area"
+                                    data-original-left="650" data-original-top="620" data-original-width="300"
+                                    data-original-height="250" data-title="洋室5.4帖"></a>
+                                <div class="area-label" data-original-left="650" data-original-top="620">洋室5.4帖</div>
+
+                                <a href="#pannellum=images/prime2/pannellum/room3.jpg" class="highlight-area"
+                                    data-original-left="150" data-original-top="350" data-original-width="300"
+                                    data-original-height="500" data-title="洋室6.7帖"></a>
+                                <div class="area-label" data-original-left="150" data-original-top="350">洋室6.7帖</div>
+                            </div>
+                        </section><!-- class="floor-section" id="second-floor" -->
+                    </div><!-- "floor-plans-container" -->

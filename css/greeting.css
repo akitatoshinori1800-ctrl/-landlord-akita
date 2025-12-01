@@ -1,0 +1,286 @@
+@charset "utf-8";
+
+/*---------------------------------------------------------------------------*/
+/* ページ最上部のパララックス背景画像 */
+/*---------------------------------------------------------------------------*/
+.header-banner {
+    background-image: url('../images/greeting/1header-parallax.jpg');
+}
+
+/*---------------------------------------------------------------------------*/
+/* 上部セクション共通スタイル */
+/*---------------------------------------------------------------------------*/
+.section-bg {
+    position: relative;
+    margin-bottom: 3rem;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.section-bg:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.section-content {
+    position: relative;
+    z-index: 2;
+    padding: 2.5rem;
+    background: rgba(255, 255, 255, 0.97);
+    border: 1px solid var(--border-subtle);
+}
+
+/* 挨拶セクション */
+.greeting-intro {
+    text-align: center;
+    padding: 1.5rem 0;
+}
+
+.greeting-text {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+    letter-spacing: 0.02em;
+}
+
+/* リスト共通スタイル */
+.section-content ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 1.75rem 0;
+}
+
+.section-content li {
+    font-size: 1.125rem;
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+    position: relative;
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+}
+
+.section-content li::before {
+    content: "•";
+    color: var(--primary-main);
+    font-weight: bold;
+    position: absolute;
+    left: 0.5rem;
+    font-size: 1.5rem;
+}
+
+/* ハイライト */
+.highlight {
+    font-weight: 700;
+    color: var(--primary-main);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+    padding: 0 0.2rem;
+}
+
+/* セクション間の余白 */
+.experience-section,
+.initiative-section {
+    margin-top: 4.5rem;
+}
+
+/* イントロテキストとまとめテキスト */
+.experience-intro,
+.initiative-intro {
+    font-size: 1.125rem;
+    margin-bottom: 1.75rem;
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+}
+
+.experience-conclusion,
+.initiative-conclusion {
+    margin-top: 2.25rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.experience-conclusion p,
+.initiative-conclusion p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+}
+
+/* 結びの挨拶 */
+.closing-message {
+    margin-top: 1.75rem;
+    padding-top: 1.75rem;
+    border-top: 1px dashed var(--border-subtle);
+    text-align: center;
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--text-main);
+    letter-spacing: 0.02em;
+}
+
+/*---------------------------------------------------------------------------*/
+/* 経営理念セクション */
+/*---------------------------------------------------------------------------*/
+.philosophy-section {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 60px 32px;
+    background: linear-gradient(135deg, #f0f9ff, #e2e8f0);
+    border-radius: 12px;
+}
+
+.philosophy-points {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+    /* 最大2カラム */
+    gap: 32px;
+    margin-top: 32px;
+}
+
+.philosophy-point {
+    background-color: #fff;
+    padding: 32px;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.philosophy-point h4 {
+    font-size: 1.3rem;
+    color: #1a365d;
+    margin-bottom: 16px;
+    padding-left: 16px;
+    position: relative;
+}
+
+.philosophy-point h4::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 70%;
+    background-color: #3182ce;
+    border-radius: 2px;
+}
+
+/*---------------------------------------------------------------------------*/
+/* レスポンシブ対応 */
+/*---------------------------------------------------------------------------*/
+@media (min-width: 660px) and (max-width: 960px) {
+
+    /*---------------------------------------------------------------------------*/
+    /* 上部セクション */
+    /*---------------------------------------------------------------------------*/
+    .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 1.75rem;
+    }
+
+    .section-content {
+        padding: 2rem;
+    }
+
+    .greeting-text,
+    .section-content li,
+    .experience-intro,
+    .initiative-intro,
+    .experience-conclusion p,
+    .initiative-conclusion p,
+    .closing-message {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    .section-content li {
+        margin: 1.25rem 0;
+    }
+
+    .experience-section,
+    .initiative-section {
+        margin-top: 4rem;
+    }
+
+    /*---------------------------------------------------------------------------*/
+    /* 経営理念セクション */
+    /*---------------------------------------------------------------------------*/
+    .philosophy-section {
+        padding: 0 24px;
+    }
+
+    .philosophy-points {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 659px) {
+
+    /*---------------------------------------------------------------------------*/
+    /* 上部セクション */
+    /*---------------------------------------------------------------------------*/
+    .section-title {
+        font-size: 1.25rem;
+        margin-bottom: 1.5rem;
+        padding-left: 0.75rem;
+    }
+
+    .section-content {
+        padding: 1.5rem;
+    }
+
+    .greeting-text,
+    .section-content li,
+    .experience-intro,
+    .initiative-intro,
+    .experience-conclusion p,
+    .initiative-conclusion p,
+    .closing-message {
+        font-size: 0.9375rem;
+        line-height: 1.6;
+        letter-spacing: 0.01em;
+    }
+
+    .section-content li {
+        margin: 1rem 0;
+        padding-left: 1.5rem;
+    }
+
+    .section-content li::before {
+        font-size: 1.25rem;
+        left: 0.25rem;
+    }
+
+    .experience-section,
+    .initiative-section {
+        margin-top: 3rem;
+    }
+
+    .experience-conclusion,
+    .initiative-conclusion {
+        margin-top: 1.75rem;
+        padding-top: 1.5rem;
+    }
+
+    .closing-message {
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+    }
+
+    /*---------------------------------------------------------------------------*/
+    /* 経営理念セクション */
+    /*---------------------------------------------------------------------------*/
+    .philosophy-section {
+        padding: 0 16px;
+    }
+
+    .philosophy-title {
+        font-size: 2rem;
+    }
+
+    .philosophy-points {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}

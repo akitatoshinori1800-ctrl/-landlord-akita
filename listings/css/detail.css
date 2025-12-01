@@ -1,0 +1,149 @@
+/* 物件詳細全体のコンテナ */
+.property-details {
+    background-color: var(--background-light);
+    padding: 1.25rem;
+    margin-bottom: 2rem;
+    border-radius: calc(var(--border-radius) * 0.75);
+    box-shadow: 0 4px 15px rgba(44, 82, 130, 0.08);
+    border: 1px solid var(--border-color);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    width: 100%;
+}
+
+.property-item {
+    display: flex;
+    flex-direction: column;
+    padding: 0.875rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.property-item:last-child {
+    border-bottom: none;
+}
+
+.property-item dt {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    width: 100%;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.02em;
+}
+
+.property-item dd {
+    margin: 0;
+    width: 100%;
+    font-size: 0.875rem;
+    color: var(--text-dark);
+    line-height: 1.5;
+}
+
+/* タブレット (661px - 960px) */
+@media screen and (min-width: 661px) {
+    .property-details {
+        padding: 1.75rem;
+        margin-bottom: 2.5rem;
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .property-item {
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 1rem 0;
+    }
+
+    .property-item dt {
+        width: 35%;
+        margin-bottom: 0;
+        padding-right: 1.5rem;
+        position: relative;
+    }
+
+    .property-item dt::after {
+        content: ':';
+        position: absolute;
+        right: 0.75rem;
+        color: var(--secondary-color);
+    }
+
+    .property-item dd {
+        width: 65%;
+        font-size: 0.9rem;
+        padding-left: 1rem;
+    }
+}
+
+/* PC (961px - 1440px) */
+@media screen and (min-width: 961px) {
+    .property-details {
+        padding: 2.5rem;
+        max-width: 80%;
+        border-radius: var(--border-radius);
+        box-shadow: 0 8px 30px rgba(44, 82, 130, 0.08);
+    }
+
+    .property-details:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 40px rgba(44, 82, 130, 0.12);
+    }
+
+    .property-item {
+        padding: 1.2rem 0;
+    }
+
+    .property-item dt {
+        font-size: 0.95rem;
+        width: 30%;
+        padding-right: 2rem;
+    }
+
+    .property-item dt::after {
+        right: 1rem;
+    }
+
+    .property-item dd {
+        width: 70%;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        padding-left: 1.5rem;
+    }
+
+    /* ホバーエフェクトはPCのみ */
+    .property-item:hover {
+        background-color: rgba(66, 153, 225, 0.03);
+    }
+}
+
+/* 大画面PC (1441px以上) */
+@media screen and (min-width: 1441px) {
+    .property-details {
+        max-width: 1200px;
+    }
+}
+
+/* アニメーション */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.property-details {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* アクセシビリティ対応 */
+@media (prefers-reduced-motion: reduce) {
+    .property-details {
+        animation: none;
+        transition: none;
+    }
+}

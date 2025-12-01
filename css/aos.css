@@ -1,0 +1,245 @@
+/*===========================================================================
+メインビジュアルセクション
+- セクション全体のレイアウトとスタイリング
+===========================================================================*/
+
+/* セクション全体の設定 */
+.section-wrapper {
+    /* 位置とサイズの設定 */
+    position: relative;
+    padding: 20px 20px;
+    
+    /* テキストの配置 */
+    text-align: center;
+    
+    /* 背景色の設定 */
+    background-color: var(--bg-light);
+}
+
+/*===========================================================================
+画像コンテナの設定
+- メイン画像を包含する要素のスタイリング
+===========================================================================*/
+
+/* 画像を囲むコンテナの基本設定 */
+.image-container {
+    /* レイアウトの設定 */
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    
+    /* シャドウ効果 */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* メイン画像のスタイル */
+.product-image {
+    /* サイズの設定 */
+    width: 100%;
+    height: auto;
+    
+    /* 表示方法の設定 */
+    display: block;
+    border-radius: 8px;
+}
+
+/*===========================================================================
+オーバーレイコンテンツ
+- 画像上に表示されるテキストエリアのスタイリング
+===========================================================================*/
+
+/* オーバーレイの基本設定 */
+.content-overlay {
+    /* 位置の設定 */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    /* サイズと余白の設定 */
+    width: 80%;
+    max-width: 800px;
+    padding: 3.5rem;
+    
+    /* 背景とボーダーの設定 */
+    background: rgba(26, 54, 93, 0.2);
+    border: 2px solid var(--primary-light);
+    border-radius: 8px;
+    backdrop-filter: blur(2px);
+    
+    /* テキストの設定 */
+    color: var(--text-white);
+    text-align: center;
+}
+
+/* 見出しのスタイル */
+.content-overlay h3 {
+    /* フォントの設定 */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    
+    /* テキストの配置 */
+    margin: 0 0 2rem 0;
+    line-height: 1.4;
+    color: var(--text-white);
+}
+
+/* 段落のスタイル */
+.content-overlay p {
+    /* フォントの設定 */
+    font-family: "Roboto", sans-serif;
+    font-size: 1.5rem;
+    
+    /* テキストの配置 */
+    margin: 0 0 2rem 0;
+    line-height: 1.7;
+    letter-spacing: 0.02em;
+}
+
+/*===========================================================================
+ボタンスタイル
+- アクセスボタンのデザインと動作の設定
+===========================================================================*/
+
+/* ボタンの基本スタイル */
+.btn-access {
+    /* 表示方法の設定 */
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    
+    /* サイズと余白の設定 */
+    padding: 1rem 3rem;
+    
+    /* 背景とボーダーの設定 */
+    background-color: var(--secondary-main);
+    border: 2px solid transparent;
+    border-radius: 6px;
+    
+    /* フォントの設定 */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--text-white);
+    text-decoration: none;
+    
+    /* アニメーションの設定 */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ボタンのグラデーション効果 */
+.btn-access:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transition: 0.6s;
+}
+
+/* ホバー時のスタイル */
+.btn-access:hover {
+    background-color: var(--secondary-light);
+    transform: translateY(-3px);
+    box-shadow: 
+        0 6px 15px rgba(56, 161, 105, 0.25),
+        0 2px 5px rgba(56, 161, 105, 0.15);
+    letter-spacing: 0.1em;
+}
+
+/* ホバー時のグラデーション移動 */
+.btn-access:hover:before {
+    left: 100%;
+}
+
+/* クリック時のスタイル */
+.btn-access:active {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(56, 161, 105, 0.2);
+}
+
+/*===========================================================================
+レスポンシブ設定
+- 画面サイズに応じたスタイル調整
+===========================================================================*/
+
+/* PC画面 (961px-1440px) */
+@media screen and (max-width: 1440px) {
+    /* オーバーレイの調整 */
+    .content-overlay {
+        padding: 3rem;
+        max-width: 700px;
+    }
+    
+    /* テキストサイズの調整 */
+    .content-overlay h3 { font-size: 2.0rem; }
+    .content-overlay p { font-size: 1.3rem; }
+}
+
+/* タブレット画面 (661px-960px) */
+@media screen and (max-width: 960px) {
+    /* セクションの調整 */
+    .section-wrapper { padding: 80px 15px; }
+    
+    /* オーバーレイの調整 */
+    .content-overlay {
+        padding: 2.5rem;
+        max-width: 600px;
+    }
+    
+    /* テキストサイズの調整 */
+    .content-overlay h3 { font-size: 1.5rem; }
+    .content-overlay p { font-size: 1.1rem; }
+}
+
+/* スマートフォン画面 (660px以下) */
+@media screen and (max-width: 660px) {
+    /* セクションの調整 */
+    .section-wrapper { padding: 60px 15px; }
+    
+    /* 画像コンテナの調整 */
+    .image-container {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    /* 画像の調整 */
+    .product-image {
+        height: 300px;
+        object-fit: cover;
+        border-radius: 8px 8px 0 0;
+    }
+    
+    /* オーバーレイの調整 */
+    .content-overlay {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        width: 100%;
+        max-width: 100%;
+        border-radius: 0 0 8px 8px;
+        padding: 2rem;
+        background: var(--primary-dark);
+    }
+    
+    /* テキストサイズの調整 */
+    .content-overlay h3 {
+        font-size: 1.0rem;
+        margin-bottom: 1.5rem;
+    }
+    .content-overlay p {
+        font-size: 0.8rem;
+        margin-bottom: 1.5rem;
+    }
+}

@@ -1,0 +1,93 @@
+@charset "utf-8";
+
+
+/*各種インポート設定
+---------------------------------------------------------------------------*/
+/* Google Fontsのインポート */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Roboto:wght@400&display=swap');
+/* Font Awesome(snsアイコン)のインポート */
+@import url('https://use.fontawesome.com/releases/v6.2.0/css/all.css');
+/* ナビゲーションアイコンのインポート */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
+
+
+
+/* CSSの初期化 */
+* {
+    margin: 0; /* 要素の外側の余白をリセット */
+    padding: 0; /* 要素の内側の余白をリセット */
+    box-sizing: border-box; /* ボックスのサイズを枠とパディングを含めたサイズに */
+    list-style: none; /* リストマーカーを削除 */
+    text-decoration: none; /* テキストの装飾を削除 */
+    font-family: "Roboto", sans-serif; /* フォントの指定 */
+}
+
+/* 全体的なカラーパレット変数の定義 */
+:root {
+  --primary-color: #2c5282; /* 信頼感のある紺色 */
+  --secondary-color: #4299e1; /* アクセントとなる青 */
+  --accent-color: #3498db;    /* 補助的なアクセントカラー */
+  --background-light: #f7fafc; /* 明るい背景色 */
+  --text-dark: #2d3748;       /* 読みやすい文字色 */
+  --border-color: #e2e8f0;    /* 優しい境界線の色 */
+  --transition-speed: 0.6s;   /* アニメーションの速さ */
+  --border-radius: 12px;      /* 角の丸み */
+}
+
+
+/*画像全般の設定*/
+img {border: none;max-width: 100%;height: auto;vertical-align: middle;}
+
+
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background-color: #f4f6f7;
+  color: var(--primary-color);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+
+/*container。サイト全体を囲むブロック。
+---------------------------------------------------------------------------*/
+#container {
+	margin: 0 auto;
+	max-width: 1400px;	/*最大幅。これ以上幅が広がらないように。*/
+}
+
+
+/*↓ここからメインエリア
+---------------------------------------------------------------------------*/
+
+/* mainエリア全体の設定*/
+.main-container {
+    width: 100%; /* 幅の設定 */
+    background-color: rgba(245, 245, 245, 0);
+}
+
+
+/* mainエリア */
+#main {
+    width: 100%; /* 幅の設定 */
+    margin: 0 auto; /* 水平方向中央寄せ */
+
+}
+
+/* メインエリア見出し */
+.main-container h2 {
+  background: linear-gradient(135deg, var(--primary-color) 40%, var(--accent-color) 100%);
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 700;
+  padding: 15px 30px;
+  margin: 100px 0 35px 0;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  letter-spacing: 0.05em;
+}

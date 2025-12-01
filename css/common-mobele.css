@@ -1,0 +1,409 @@
+/*---------------------------------------------------------------------------
+小さな端末用のハンバーガーメニューの設定
+---------------------------------------------------------------------------*/
+/*３本バー（ハンバーガー）アイコン設定
+---------------------------------------------------------------------------*/
+#menubar_hdr {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    top: 20px;
+    right: 20px;
+    width: 54px;
+    height: 54px;
+    border-radius: 12px;
+    background: #389168;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#menubar_hdr::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 24px;
+    height: 2px;
+    /* background: #389168; */
+    background: #fff;
+    box-shadow: 0 -7px 0 #fff, 0 7px 0 #fff;
+    transition: all 0.3s ease;
+}
+
+#menubar_hdr.close {
+    /* background: #389168; */
+    background: #fff;
+}
+
+#menubar_hdr.close::before {
+    /* background: #fff; */
+    background: #389168;
+    transform: translate(-50%, -50%) rotate(45deg);
+    box-shadow: none;
+}
+
+#menubar_hdr.close::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 24px;
+    height: 2px;
+    /* background: #fff; */
+    background: #389168;
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/*小さな端末用のメインメニューの設定
+---------------------------------------------------------------------------*/
+#menubar-s {
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(44, 82, 130, 0.95),
+        rgba(56, 161, 105, 0.95)
+    );
+    backdrop-filter: blur(8px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: auto;
+}
+
+#menubar-s.open {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+
+/*nav要素*/
+#menubar-s nav {
+    max-width: 170px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/*ul要素*/
+#menubar-s ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+/*メニュー項目*/
+#menubar-s li {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.4s ease;
+}
+
+#menubar-s.open li {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+#menubar-s li:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+#menubar-s li:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+#menubar-s li:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+#menubar-s li:nth-child(4) {
+    transition-delay: 0.4s;
+}
+
+#menubar-s li:nth-child(5) {
+    transition-delay: 0.5s;
+}
+
+#menubar-s li:nth-child(6) {
+    transition-delay: 0.6s;
+}
+
+/*リンクスタイル*/
+#menubar-s a {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    padding: 15px 20px;
+    margin: 8px 0;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#menubar-s a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(5px);
+}
+
+#menubar-s nav ul li a.active,
+#menubar-s nav ul li a.active i {
+    background: linear-gradient(
+        to right,
+        var(--secondary-dark),
+        var(--secondary-main)
+    );
+    color: var(--text-white);
+    font-weight: bold; /* テキストに太字を適用（アイコンには影響なし） */
+}
+
+/*アイコン*/
+#menubar-s i {
+    font-size: 1.4rem;
+    /* margin-right: 15px; */
+    width: 24px;
+    /* text-align: center; */
+    color: #fff;
+}
+
+/*メニューテキスト*/
+#menubar-s a span {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    display: block;
+    /* margin-top: 4px; */
+    transition: all 0.3s ease;
+}
+
+#menubar-s a:hover span {
+    opacity: 1;
+}
+
+/*スクロールバーカスタマイズ*/
+#menubar-s::-webkit-scrollbar {
+    width: 6px;
+}
+
+#menubar-s::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+#menubar-s::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/*---------------------------------------------------------------------------
+↑　ここまで小さな端末用のハンバーガーメニューの設定*/
+
+
+
+
+
+
+
+/*---------------------------------------------------------------------------*/
+/* ➁TABLET VIEW　設定 */
+/*---------------------------------------------------------------------------*/
+
+@media (min-width: 660px) and (max-width: 960px) {
+
+    /* ページ最上部のパララックス背景バナー設定 */
+
+
+
+    /* ロゴの設定 */
+    .header-banner-overlay #logo {
+        width: 180px;
+        height: 130px;
+
+    }
+
+    /* 屋号のサイズ設定 */
+
+    .header-banner-overlay h1 .local-name {
+        font-size: 26px;
+    }
+
+
+    .header-banner-overlay h1 .business-name {
+        font-size: 42px;
+    }
+
+
+    .header-banner-overlay h1 .consulting {
+        font-size: 22px;
+    }
+
+    /*---------------------------------------------------------------------------
+↑ページ最上部のパララックス背景ここまで*/
+
+
+
+
+
+
+    /*↓ここからナビゲーション
+---------------------------------------------------------------------------*/
+
+    .nav-container nav ul {
+
+        gap: 0.5rem;
+    }
+
+    .nav-container nav ul li {
+        padding: 3px 8px;
+    }
+
+    .nav-container nav ul li a span.japanese {
+        font-size: 14px;
+    }
+
+    .nav-container nav ul li a span.english {
+        font-size: 10px;
+    }
+
+    .nav-container nav ul li a i {
+        font-size: 18px;
+    }
+
+    /*---------------------------------------------------------------------------
+↑ナビゲーションここまで*/
+
+
+
+    /*↓ここからメインエリア
+---------------------------------------------------------------------------*/
+
+
+    #main {
+        width: 90%;
+        padding: 150px 0 150px 0;
+    }
+
+
+
+
+    /*---------------------------------------------------------------------------
+↑メインエリアここまで*/
+
+
+    /*フッターメニュー設定
+---------------------------------------------------------------------------*/
+
+
+    footer {
+        padding: 2rem 1rem; /* 余白を調整 */
+    }
+
+
+
+
+}/* メディアクエリの閉じ括弧 */
+
+
+/*---------------------------------------------------------------------------
+↑　ここまで大きなタブレット　レスポンシブル対応の追加設定
+---------------------------------------------------------------------------*/
+
+
+
+
+
+/*---------------------------------------------------------------------------
+➂スマホ VIEW　設定
+---------------------------------------------------------------------------*/
+@media screen and (max-width: 659px) {
+
+    /* ページ最上部のパララックス背景バナー設定 */
+    .header-banner {
+        height: 50vh;
+        background-attachment: scroll;
+        /* スマホでパララックス効果を無効に */
+    }
+
+
+
+    /* ロゴの設定 */
+    .header-banner-overlay #logo {
+        width: 150px;
+        height: 100px;
+
+    }
+
+    /* 屋号のサイズ設定 */
+
+    .header-banner-overlay h1 .local-name {
+        font-size: 20px;
+    }
+
+
+    .header-banner-overlay h1 .business-name {
+        font-size: 36px;
+    }
+
+
+    .header-banner-overlay h1 .consulting {
+        font-size: 16px;
+    }
+
+    /*---------------------------------------------------------------------------
+↑ページ最上部のパララックス背景ここまで*/
+
+
+    /* ヒーローエリア*/
+    #hero-area {
+        height: 40vh;
+    }
+
+
+    /* メインエリア */
+    #main {
+        width: 95%;
+        padding: 50px 0 50px 0;
+    }
+
+
+    /*大きなナビゲーションバー*/
+    .nav-container {
+        display: none;
+        /*非表示にする*/
+    }
+
+    /*３本バー（ハンバーガー）アイコン設定
+---------------------------------------------------------------------------*/
+    /*３本バーブロック*/
+    #menubar_hdr {
+        display: block;
+        /*表示する*/
+    }
+
+
+
+    /*フッターメニュー設定
+---------------------------------------------------------------------------*/
+    .footer-content {
+        flex-direction: column; /* 縦並びに配置 */
+        align-items: center; /* 中央寄せ */
+    }
+
+    footer {
+        padding: 1.5rem 0.5rem; /* 余白を縮小 */
+    }
+
+
+
+}/* メディアクエリの閉じ括弧なので間違えて消さないように */
+
+/*---------------------------------------------------------------------------
+↑　ここまでスマホ対応の追加設定
+---------------------------------------------------------------------------*/

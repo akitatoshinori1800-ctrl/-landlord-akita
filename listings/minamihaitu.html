@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="愛知県小牧市間々本町賃貸住宅">
+    <meta name="keywords" content="不動産,賃貸,物件情報, アパート,一戸建て">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 共通css -->
+    <link rel="stylesheet" href="css/common.css">
+    <!-- 外観用css -->
+    <link rel="stylesheet" href="css/exterior.css">
+    <!-- 屋内間取り図用css -->
+    <link rel="stylesheet" href="css/floor-plan.css">
+    <!-- パノラマ画像表示ライブラリのCSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.css">
+    <!-- パノラマ画像表示ライブラリのJavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.js"></script>
+    <!-- 詳細情報用css -->
+    <link rel="stylesheet" href="css/detail.css">
+    <title>パーク南ハイツ詳細</title>
+</head>
+
+<body>
+    <!--サイト全体を囲むブロック
+--------------------------------------------------------------------->
+    <div id="container">
+
+        <!--メインエリア
+--------------------------------------------------------------------->
+        <div class="container main-container">
+            <main id="main">
+
+                <!--メインエリア全体を囲むコンテナ
+--------------------------------------------------------------------->
+                <div class="container">
+
+                    <!--外観エリア
+--------------------------------------------------------------------->
+                    <h2>外観</h2>
+                    <div class="gallery-container">
+                        <div class="exterior-details">
+                            <div class="image-showcase">
+                                <div class="image-wrapper">
+                                    <img src="images/minamihaitu/1exterior.jpg" alt="外観" class="main-image"
+                                        id="mainImage1">
+                                    <img src="images/sample1/exterior-details1-1.jpg" alt="外観" class="main-image"
+                                        id="mainImage2" style="opacity: 0;">
+                                    <div class="image-description-container">
+                                        <div class="image-description" id="imageDescription">
+                                            外観。1棟4室。全角部屋。バルコニー南側。水害対策として基礎を高くしています。
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="thumbnail-container">
+                                <div class="thumbnail-wrapper" id="thumbnailWrapper">
+                                    <img src="images/minamihaitu/2parking.jpg" alt="駐車場" class="thumbnail"
+                                        data-index="0" data-description="駐車場1棟1台あります">
+                                    <img src="images/minamihaitu/1central-aisle.jpg" alt="中央通路" class="thumbnail"
+                                        data-index="1" data-description="中央通路。窓から覗かれる心配がありません。">
+                                    <img src="images/minamihaitu/2stairs.jpg" alt="階段" class="thumbnail" data-index="2"
+                                        data-description="階段に屋根があるので雨天時も安心。">
+                                    <img src="images/minamihaitu/3garbage-dump.jpg" alt="ゴミ捨て場" class="thumbnail"
+                                        data-index="3" data-description="ゴミ捨て場。住人さんがルールを守っているのでいつも綺麗です。私も定期的に巡回しています。">
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--  <div class="gallery-container"> -->
+
+                    <!--屋内エリア
+--------------------------------------------------------------------->
+
+                    <!--詳細情報エリア
+--------------------------------------------------------------------->
+                    <h2>詳細</h2>
+                    <section class="property-details">
+                        <div class="property-item">
+                            <dt>建物構造</dt>
+                            <dd>木造2階建て</dd>
+                        </div>
+                        <div class="property-item">
+                            <dt>交通</dt>
+                            <dd>名鉄小牧線 小牧駅徒歩25分 または名鉄バス 桃花台線 間々乳観音前徒歩10分</dd>
+                        </div>
+                        <div class="property-item">
+                            <dt>所在地</dt>
+                            <dd>小牧市間々本町208番地</dd>
+                        </div>
+                        <div class="property-item">
+                            <dt>築年月</dt>
+                            <dd>平成7年4月</dd>
+                        </div>
+                        <div class="property-item">
+                            <dt>間取り</dt>
+                            <dd>3DK・洋2・和1</dd>
+                        </div>
+                        <div class="property-item">
+                            <dt>主要採光面</dt>
+                            <dd>南</dd>
+                        </div>
+                        <div class="property-item">
+                            <dt>延床面積</dt>
+                            <dd>55.4㎡(16.7坪)</dd>
+                        </div>
+                        <div class="property-item">
+                            <dt>バス・トイレ</dt>
+                            <dd>バス・トイレ別 洗面所独立</dd>
+                        </div>
+                        <div class="property-item">
+                            <dt>設備・サービス</dt>
+                            <dd>ケーブルTV・高速インターネット無料(1Gbps)</strong>・室内洗濯機置場・シューズボックス・モニター付インターホン・プロパンガス・バルコニー・駐輪場</dd>
+                        </div>
+                        <div class="property-item">
+                            <dt>駐車場</dt>
+                            <dd>1台</dd>
+                        </div>
+                    </section>
+
+                </div><!-- <div class="container">の閉じ括弧 -->
+
+            </main>
+        </div>
+        <!-- ↑メインエリアここまで -->
+
+    </div><!--#containerのdiv 間違えて消さないように  -->
+
+
+
+
+
+    <!-- jQueryライブラリ：DOM操作と簡易的なイベント処理を行うためのライブラリ -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!--物件外観用スクリプト -->
+    <script src="js/exterior.js"></script>
+
+    <!-- パノラマ画像表示ライブラリのJavaScript：360度パノラマ画像を表示するためのスクリプト -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.js"></script>
+
+    <!-- カスタムJavaScriptファイル：間取り図のインタラクティブな機能を実装 -->
+    <script src="js/floor-plan.js"></script>
+
+</body>
+
+</html>
