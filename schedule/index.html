@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>スケジュール管理デモ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #f5f7fa;
+            min-height: 100vh;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.15);
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .current-date {
+            font-size: 14px;
+            opacity: 0.95;
+            margin-top: 6px;
+            font-weight: 400;
+        }
+
+        .tab-container {
+            background: white;
+            padding: 12px 16px 0 16px;
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .tab-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab {
+            flex: 1;
+            min-width: 80px;
+            padding: 12px 16px;
+            border: none;
+            background: transparent;
+            color: #64748b;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .tab:active {
+            transform: scale(0.95);
+        }
+
+        .tab.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+
+        .tab-badge {
+            position: absolute;
+            top: 6px;
+            right: 8px;
+            background: #667eea;
+            color: white;
+            font-size: 9px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: 700;
+        }
+
+        .schedule-container {
+            padding: 16px;
+            padding-bottom: 40px;
+        }
+
+        .week-group {
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .week-label {
+            font-size: 13px;
+            color: #64748b;
+            font-weight: 600;
+            padding: 8px 12px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: inline-block;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .day-card {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .day-card:active {
+            transform: scale(0.98);
+        }
+
+        .day-card.holiday {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid #f59e0b;
+        }
+
+        .day-card.weekend {
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+            border-left: 4px solid #6366f1;
+        }
+
+        .day-card.today {
+            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+            border: 2px solid #667eea;
+        }
+
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .day-date {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+        }
+
+        .day-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .day-card.holiday .day-number {
+            color: #d97706;
+        }
+
+        .day-card.weekend .day-number {
+            color: #4f46e5;
+        }
+
+        .day-month {
+            font-size: 14px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .day-weekday {
+            font-size: 14px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        .day-card.holiday .day-weekday {
+            background: #fbbf24;
+            color: #78350f;
+        }
+
+        .day-card.weekend .day-weekday {
+            background: #818cf8;
+            color: white;
+        }
+
+        .schedule-content {
+            display: flex;
+            align-items: start;
+            gap: 12px;
+        }
+
+        .schedule-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .day-card.holiday .schedule-icon {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+        }
+
+        .schedule-info {
+            flex: 1;
+        }
+
+        .schedule-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+
+        .day-card.holiday .schedule-title {
+            color: #92400e;
+        }
+
+        .schedule-time {
+            font-size: 13px;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .schedule-time::before {
+            content: "🕐";
+            font-size: 12px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .today-badge {
+            background: #667eea;
+            color: white;
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        @media (max-width: 400px) {
+            .schedule-container {
+                padding: 12px;
+            }
+
+            .day-card {
+                padding: 14px;
+            }
+
+            header h1 {
+                font-size: 20px;
+            }
+
+            .tab {
+                min-width: 70px;
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📅 スケジュール管理</h1>
+            <div class="current-date" id="currentDate"></div>
+        </header>
+        
+        <div class="tab-container">
+            <button class="tab active" data-week="0" id="tab-0">
+                今週
+                <span class="tab-badge">NOW</span>
+            </button>
+            <button class="tab" data-week="1" id="tab-1">来週</button>
+            <button class="tab" data-week="2" id="tab-2">再来週</button>
+            <button class="tab" data-week="3" id="tab-3">再々来週</button>
+        </div>
+
+        <div class="schedule-container" id="scheduleContainer">
+            <div class="loading">スケジュールを読み込んでいます...</div>
+        </div>
+    </div>
+
+    <script>
+        // 今日の日付を取得
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        // 曜日の配列
+        const weekdays = ['日', '月', '火', '水', '木', '金', '土'];
+
+        // 現在選択中の週
+        let currentWeekIndex = 0;
+
+        // 全スケジュールデータを保持
+        let allWeeksData = [];
+
+        // ヘッダーに現在日付を表示
+        document.getElementById('currentDate').textContent = 
+            `${today.getFullYear()}年${today.getMonth() + 1}月${today.getDate()}日（${weekdays[today.getDay()]}）`;
+
+        /**
+         * 指定週の開始日（日曜日）を取得
+         */
+        function getWeekStart(baseDate, weekOffset) {
+            const date = new Date(baseDate);
+            const dayOfWeek = date.getDay();
+            // 今週の日曜日を計算
+            date.setDate(date.getDate() - dayOfWeek);
+            // 週のオフセットを適用
+            date.setDate(date.getDate() + (weekOffset * 7));
+            return date;
+        }
+
+        /**
+         * 指定週の7日間のスケジュールデータを生成
+         */
+        function generateWeekSchedule(weekStartDate) {
+            const schedules = [];
+            const currentDate = new Date(weekStartDate);
+
+            for (let i = 0; i < 7; i++) {
+                const dayOfWeek = currentDate.getDay();
+                const date = currentDate.getDate();
+                const month = currentDate.getMonth() + 1;
+                const year = currentDate.getFullYear();
+                
+                // 休日判定
+                let isHoliday = false;
+                let holidayReason = '';
+
+                // 水曜日は必ず休日
+                if (dayOfWeek === 3) {
+                    isHoliday = true;
+                    holidayReason = '定休日';
+                }
+                // 土日はスケジュールあり（休日ではない）
+                else if (dayOfWeek === 0 || dayOfWeek === 6) {
+                    isHoliday = false;
+                }
+                // その他の平日：月曜日を休日に（1週間に1日の休日ルール）
+                else if (dayOfWeek === 1) {
+                    isHoliday = true;
+                    holidayReason = '休日';
+                }
+
+                // スケジュール情報の作成
+                const schedule = {
+                    date: new Date(currentDate),
+                    year: year,
+                    month: month,
+                    day: date,
+                    weekday: weekdays[dayOfWeek],
+                    weekdayNum: dayOfWeek,
+                    isHoliday: isHoliday,
+                    holidayReason: holidayReason,
+                    isWeekend: dayOfWeek === 0 || dayOfWeek === 6,
+                    isToday: currentDate.getTime() === today.getTime()
+                };
+
+                // スケジュール内容の割り当て
+                if (!isHoliday) {
+                    schedule.title = 'オンライン会議';
+                    schedule.time = '9:00 - 17:00';
+                    schedule.icon = '💻';
+                } else {
+                    schedule.title = holidayReason;
+                    schedule.time = '';
+                    schedule.icon = '🌴';
+                }
+
+                schedules.push(schedule);
+
+                // 次の日へ
+                currentDate.setDate(currentDate.getDate() + 1);
+            }
+
+            return schedules;
+        }
+
+        /**
+         * 4週間分のスケジュールデータを生成
+         */
+        function generateAllWeeksData() {
+            allWeeksData = [];
+            for (let i = 0; i < 4; i++) {
+                const weekStart = getWeekStart(today, i);
+                const weekSchedules = generateWeekSchedule(weekStart);
+                allWeeksData.push({
+                    weekNumber: i,
+                    start: weekStart,
+                    days: weekSchedules
+                });
+            }
+        }
+
+        /**
+         * スケジュールカードのHTML生成
+         */
+        function createDayCard(schedule) {
+            const cardClasses = ['day-card'];
+            if (schedule.isHoliday) cardClasses.push('holiday');
+            if (schedule.isWeekend && !schedule.isHoliday) cardClasses.push('weekend');
+            if (schedule.isToday) cardClasses.push('today');
+
+            const todayBadge = schedule.isToday ? '<span class="today-badge">今日</span>' : '';
+
+            return `
+                <div class="${cardClasses.join(' ')}">
+                    <div class="day-header">
+                        <div class="day-date">
+                            <span class="day-number">${schedule.day}</span>
+                            <span class="day-month">${schedule.month}月</span>
+                            ${todayBadge}
+                        </div>
+                        <div class="day-weekday">${schedule.weekday}</div>
+                    </div>
+                    <div class="schedule-content">
+                        <div class="schedule-icon">${schedule.icon}</div>
+                        <div class="schedule-info">
+                            <div class="schedule-title">${schedule.title}</div>
+                            ${schedule.time ? `<div class="schedule-time">${schedule.time}</div>` : ''}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        /**
+         * 週ラベルの生成
+         */
+        function createWeekLabel(weekStart) {
+            const month = weekStart.getMonth() + 1;
+            const day = weekStart.getDate();
+            const endDate = new Date(weekStart);
+            endDate.setDate(endDate.getDate() + 6);
+            const endMonth = endDate.getMonth() + 1;
+            const endDay = endDate.getDate();
+            
+            if (month === endMonth) {
+                return `${month}月${day}日〜${endDay}日`;
+            } else {
+                return `${month}月${day}日〜${endMonth}月${endDay}日`;
+            }
+        }
+
+        /**
+         * 指定週のスケジュールを表示
+         */
+        function renderWeek(weekIndex) {
+            const container = document.getElementById('scheduleContainer');
+            const weekData = allWeeksData[weekIndex];
+
+            if (!weekData) {
+                container.innerHTML = '<div class="loading">データがありません</div>';
+                return;
+            }
+
+            const html = `
+                <div class="week-group">
+                    <div class="week-label">${createWeekLabel(weekData.start)}</div>
+                    ${weekData.days.map(day => createDayCard(day)).join('')}
+                </div>
+            `;
+
+            container.innerHTML = html;
+        }
+
+        /**
+         * タブの切り替え処理
+         */
+        function switchTab(weekIndex) {
+            // 現在のタブのactiveクラスを削除
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // 選択されたタブにactiveクラスを追加
+            const selectedTab = document.querySelector(`[data-week="${weekIndex}"]`);
+            if (selectedTab) {
+                selectedTab.classList.add('active');
+            }
+
+            // スケジュールを表示
+            currentWeekIndex = weekIndex;
+            renderWeek(weekIndex);
+        }
+
+        /**
+         * タブクリックイベントの設定
+         */
+        function setupTabListeners() {
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const weekIndex = parseInt(tab.getAttribute('data-week'));
+                    switchTab(weekIndex);
+                });
+            });
+        }
+
+        /**
+         * 初期化処理
+         */
+        function initialize() {
+            // 4週間分のデータを生成
+            generateAllWeeksData();
+            
+            // タブのイベントリスナーを設定
+            setupTabListeners();
+            
+            // 初期表示（今週）
+            renderWeek(0);
+        }
+
+        // ページ読み込み時に初期化
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(initialize, 100); // ローディング表示のため少し遅延
+        });
+    </script>
+</body>
+</html>
