@@ -3,7 +3,7 @@
 .gallery-container {
     background-color: white;
     border-radius: var(--border-radius);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     perspective: 1000px;
 }
@@ -18,7 +18,7 @@
     position: relative;
     border-radius: var(--border-radius);
     overflow: hidden;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
 .image-wrapper {
@@ -32,7 +32,7 @@
     height: 100%;
     object-fit: cover;
     /* スムーズな画像切り替えのためのトランジション */
-    transition: 
+    transition:
         opacity 0.6s ease,
         transform 0.6s ease;
     opacity: 1;
@@ -45,7 +45,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,10 +56,10 @@
     text-align: center;
     color: white;
     font-weight: 300;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
     padding: 10px;
     border-radius: 8px;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0, 0, 0, 0.3);
     transition: opacity 0.6s ease;
 }
 
@@ -84,7 +84,7 @@
     opacity: 0.6;
     filter: grayscale(50%);
     /* ホバー時の動きをスムーズにする */
-    transition: 
+    transition:
         opacity 0.3s ease,
         transform 0.3s ease,
         box-shadow 0.3s ease,
@@ -92,12 +92,12 @@
 }
 
 /* サムネイルのホバーと選択時の効果 */
-.thumbnail.active, 
+.thumbnail.active,
 .thumbnail:hover {
     opacity: 1;
     filter: grayscale(0);
     transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 /* アニメーション効果の定義 
@@ -107,6 +107,7 @@
         opacity: 0;
         transform: scale(0.8) translateY(10px);
     }
+
     100% {
         opacity: 1;
         transform: scale(1) translateY(0);
@@ -121,39 +122,158 @@
 ----------------------------------------*/
 /* 大画面 (1441px以上) */
 @media screen and (min-width: 1441px) {
-    .gallery-container { margin-bottom: 300px; }
-    .exterior-details { padding: 50px; }
-    .image-wrapper { height: 700px; }
-    .thumbnail { width: 140px; height: 140px; }
-    .thumbnail-wrapper { gap: 25px; }
+    .gallery-container {
+        margin-bottom: 300px;
+    }
+
+    .exterior-details {
+        padding: 50px;
+    }
+
+    .image-wrapper {
+        height: 700px;
+    }
+
+    .thumbnail {
+        width: 140px;
+        height: 140px;
+    }
+
+    .thumbnail-container {
+        margin-top: 30px;
+        display: flex;
+        justify-content: flex-start !important;
+        /* 左詰めに固定 */
+        width: 100%;
+        overflow-x: auto;
+        /* 横スクロール有効 */
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 15px;
+        /* スクロールバー用の余白 */
+    }
+
+    .thumbnail-wrapper {
+        display: flex;
+        justify-content: flex-start !important;
+        /* 左詰めに固定 */
+        flex-wrap: nowrap !important;
+        /* 折り返し禁止 */
+        gap: 25px;
+        padding: 0 50px;
+        /* 左右の余白 */
+    }
 }
 
 /* PC画面 (961px-1440px) */
 @media screen and (min-width: 961px) and (max-width: 1440px) {
-    .gallery-container { margin-bottom: 300px; }
-    .exterior-details { padding: 50px; }
-    .image-wrapper { height: 700px; }
-    .thumbnail { width: 140px; height: 140px; }
-    .thumbnail-wrapper { gap: 25px; }
+    .gallery-container {
+        margin-bottom: 300px;
+    }
+
+    .exterior-details {
+        padding: 50px;
+    }
+
+    .image-wrapper {
+        height: 700px;
+    }
+
+    .thumbnail {
+        width: 140px;
+        height: 140px;
+    }
+
+    .thumbnail-container {
+        margin-top: 30px;
+        display: flex;
+        justify-content: flex-start !important;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 15px;
+    }
+
+    .thumbnail-wrapper {
+        display: flex;
+        justify-content: flex-start !important;
+        flex-wrap: nowrap !important;
+        gap: 25px;
+        padding: 0 50px;
+    }
 }
 
 /* タブレット (660px-960px) */
 @media screen and (min-width: 660px) and (max-width: 960px) {
-    .gallery-container { margin-bottom: 200px; }
-    .exterior-details { padding: 30px; }
-    .image-wrapper { height: 500px; }
-    .thumbnail { width: 100px; height: 100px; }
-    .thumbnail-wrapper { gap: 15px; }
+    .gallery-container {
+        margin-bottom: 200px;
+    }
+
+    .exterior-details {
+        padding: 30px;
+    }
+
+    .image-wrapper {
+        height: 500px;
+    }
+
+    .thumbnail {
+        width: 100px;
+        height: 100px;
+    }
+
+    .thumbnail-container {
+        margin-top: 25px;
+        display: flex;
+        justify-content: flex-start !important;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 10px;
+    }
+
+    .thumbnail-wrapper {
+        display: flex;
+        justify-content: flex-start !important;
+        flex-wrap: nowrap !important;
+        gap: 15px;
+        padding: 0 30px;
+    }
 }
 
 /* スマートフォン (659px以下) */
 @media screen and (max-width: 659px) {
-    .gallery-container { margin-bottom: 150px; }
-    .exterior-details { padding: 20px; }
-    .image-wrapper { height: 300px; }
-    .thumbnail { width: 80px; height: 80px; }
+    .gallery-container {
+        margin-bottom: 150px;
+    }
+
+    .exterior-details {
+        padding: 20px;
+    }
+
+    .image-wrapper {
+        height: 300px;
+    }
+
+    .thumbnail {
+        width: 80px;
+        height: 80px;
+    }
+
+    .thumbnail-container {
+        margin-top: 20px;
+        display: flex;
+        justify-content: flex-start !important;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 10px;
+    }
+
     .thumbnail-wrapper {
-        flex-wrap: wrap;
+        display: flex;
+        justify-content: flex-start !important;
+        flex-wrap: nowrap !important;
         gap: 10px;
+        padding: 0 15px;
     }
 }

@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const imageDescription = document.getElementById('imageDescription');
     const thumbnailWrapper = document.getElementById('thumbnailWrapper');
     const thumbnails = document.querySelectorAll('.thumbnail');
-    
+
     // 画像切り替え用の変数
     let activeImage = mainImage1;
     let inactiveImage = mainImage2;
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function changeImage(newSrc, newAlt, newDescription) {
         // 現在表示中の画像をフェードアウト
         activeImage.classList.add('fade-out');
-        
+
         // 新しい画像を読み込む
         const preloadImage = new Image();
         preloadImage.onload = () => {
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             inactiveImage.src = newSrc;
             inactiveImage.alt = newAlt;
             inactiveImage.style.opacity = '1';
-            
+
             // 説明文をフェードアウト
             imageDescription.classList.add('fade-out');
 
@@ -35,15 +35,15 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 activeImage.style.opacity = '0';
                 activeImage.classList.remove('fade-out');
-                
+
                 // アクティブな画像を入れ替え
                 [activeImage, inactiveImage] = [inactiveImage, activeImage];
-                
+
                 // 説明文を更新してフェードイン
                 imageDescription.textContent = newDescription;
                 imageDescription.classList.remove('fade-out');
                 imageDescription.classList.add('text-pop-in');
-                
+
                 // アニメーション効果を削除
                 setTimeout(() => {
                     imageDescription.classList.remove('text-pop-in');
@@ -61,11 +61,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // クリックとタッチの両方に対応
             const handleClick = (e) => {
                 e.preventDefault();
-                
+
                 // クリックされたサムネイルをアクティブに
                 thumbnails.forEach(t => t.classList.remove('active'));
                 thumbnail.classList.add('active');
-                
+
                 // 画像を切り替え
                 changeImage(
                     thumbnail.src,
@@ -80,28 +80,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * 画面サイズに応じてレイアウトを調整
-     */
+         * 画面サイズに応じてレイアウトを調整
+         */
     function updateLayout() {
         const width = window.innerWidth;
-        
-        // 画面サイズごとの設定
-        const layouts = [
-            { maxWidth: 659, settings: { wrap: true, gap: '10px' } },
-            { maxWidth: 960, settings: { wrap: false, gap: '15px' } },
-            { maxWidth: Infinity, settings: { wrap: false, gap: '25px' } }
-        ];
-        
-        // 適切な設定を見つけて適用
-        const layout = layouts.find(l => width <= l.maxWidth);
-        thumbnailWrapper.style.flexWrap = layout.settings.wrap ? 'wrap' : 'nowrap';
-        thumbnailWrapper.style.gap = layout.settings.gap;
+
+        // 全サイズ共通で折り返しなし（nowrap）と、左詰め（flex-start）を徹底する
+        thumbnailWrapper.style.flexWrap = 'nowrap';
+        thumbnailContainer.style.justifyContent = 'flex-start';
+        thumbnailWrapper.style.justifyContent = 'flex-start';
+
+        if (width <= 659) {
+            thumbnailWrapper.style.gap = '10px';
+        } else if (width <= 960) {
+            thumbnailWrapper.style.gap = '15px';
+        } else {
+            thumbnailWrapper.style.gap = '25px';
+        }
     }
 
     // 初期設定
     setupThumbnails();
     updateLayout();
-    
+
     // 画面サイズが変更されたときにレイアウトを更新
     window.addEventListener('resize', updateLayout);
 });
